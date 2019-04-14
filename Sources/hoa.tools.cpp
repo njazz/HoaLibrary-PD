@@ -12,8 +12,13 @@ using namespace hoa;
 #define DEFDACBLKSIZE 64
 extern "C"
 {
-	EXTERN t_sample* sys_soundout;
+// quick fix for v0.49 API
+//	EXTERN t_sample* sys_soundout;
+t_sample* _soundout = nullptr;
+EXTERN t_sample* get_sys_soundout(void);
 }
+
+
 
 typedef struct _hoa_pi
 {	
@@ -237,8 +242,8 @@ static void hoa_dac_dsp(t_hoa_dac *x, t_signal **sp)
         if ((*sp2)->s_n != DEFDACBLKSIZE)
             error("hoa.dac~: bad vector size");
         else if (ch >= 0 && ch < sys_get_outchannels())
-            dsp_add(plus_perform, 4, sys_soundout + DEFDACBLKSIZE*ch,
-                    (*sp2)->s_vec, sys_soundout + DEFDACBLKSIZE*ch, DEFDACBLKSIZE);
+            dsp_add(plus_perform, 4, _soundout + DEFDACBLKSIZE*ch,
+                    (*sp2)->s_vec, _soundout + DEFDACBLKSIZE*ch, DEFDACBLKSIZE);
     }
 }
 
@@ -249,6 +254,9 @@ static void hoa_dac_free(t_hoa_dac *x)
 
 extern "C" void setup_hoa0x2edac_tilde(void)
 {
+    // quick fix for v0.49 API
+    _soundout = get_sys_soundout();
+
     t_class* c;
     c = class_new(gensym("hoa.dac~"), (t_newmethod)hoa_dac_new, (t_method)hoa_dac_free, (short)sizeof(t_hoa_dac), 0, A_GIMME, 0);
     
