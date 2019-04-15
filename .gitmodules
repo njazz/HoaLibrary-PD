@@ -4,3 +4,4 @@
 [submodule "ThirdParty/CicmWrapper"]
 	path = ThirdParty/CicmWrapper
 	url = https://github.com/njazz/CicmWrapper
+	branch = master-0.49-fixes

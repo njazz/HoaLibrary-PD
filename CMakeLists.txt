@@ -158,9 +158,8 @@ set( PD_EXTENDED_HEADERS
     ThirdParty/PdHeaders/pd-extended/s_stuff.h
 )
 set( PD_L2ORK_HEADERS
-    # replacement from 'extended':
-    ThirdParty/PdHeaders/pd-extended/g_canvas.h
-    #    ThirdParty/PdHeaders/pd-l2ork/g_canvas.h
+    # replacement file from 'extended':
+    ThirdParty/PdHeaders/pd-l2ork/g_canvas.h
     ThirdParty/PdHeaders/pd-l2ork/m_imp.h
     ThirdParty/PdHeaders/pd-l2ork/m_pd.h
     ThirdParty/PdHeaders/pd-l2ork/s_stuff.h
