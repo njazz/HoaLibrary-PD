@@ -9,7 +9,7 @@
 
 extern "C"
 {
-#include "ThirdParty/CicmWrapper/Sources/cicm_wrapper.h"
+#include "cicm_wrapper.h"
 }
 
 #define HOA_MAX_PLANEWAVES      128
